@@ -1,11 +1,12 @@
 import boto3
 import json
 
+
 # Define some values that you will use later to analyze your images
 maximum_labels_number = 10
 minimum_confidence_percentage = 80
 
-def lambda_handler(event: dict, context: dict) -> dict:
+def lambda_handler(event: dict, _: dict) -> dict:
     """Retrieve image from S3, analyze it using Rekognition
     and generate a JSON report with the image labels
 
@@ -16,13 +17,6 @@ def lambda_handler(event: dict, context: dict) -> dict:
     Returns:
         dict: the main image tags, and a status code
     """
-    # Declare the Amazon Rekognition client to use
-    rekognition_client = boto3.client("rekognition")
-    # Declare the Amazon S3 client to use
-    s3 = boto3.resource("s3")
-    # Store generated files into a list
-    generated_files = []
-
     # Retrieve images informations
     images = (
     {
@@ -32,6 +26,31 @@ def lambda_handler(event: dict, context: dict) -> dict:
         "object": b["s3"]["object"]["key"]
     }   for b in event["Records"])
     
+    return {
+        "status": 200,
+        "message": {
+            "status": "Ok",
+            "generated_files": process_images(images)
+        }
+    }
+
+
+def process_images(images: list) -> list:
+    """Process each images in the list and return
+    a list of generated files
+
+    Args:
+        images (list): the list of new images to analyze
+
+    Returns:
+        list: the list of generated files
+    """
+    # Declare the Amazon Rekognition client to use
+    rekognition_client = boto3.client("rekognition")
+    # Declare the Amazon S3 client to use
+    s3 = boto3.resource("s3")
+    # Store generated files into a list
+    generated_files = []
     # Process each images
     for image in images:
         # Detect labels of the input image
@@ -55,13 +74,7 @@ def lambda_handler(event: dict, context: dict) -> dict:
         )
         # Add the JSON file to the generated_files list
         generated_files.append(
-            image["bucket"] + json_filename
+            f'{image["bucket"]}/{json_filename}'
         )
-    
-    return {
-        "status": 200,
-        "message": {
-            "status": "Ok",
-            "generated_files": generated_files
-        }
-    }
+    # Return the list of generated files
+    return generated_files
