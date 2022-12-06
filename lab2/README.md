@@ -33,13 +33,9 @@ rekognition_response = rekognition_client.detect_labels(
             "Bucket": image["bucket"],
             "Name": image["object"],
         }
-    },
-    MaxLabels=maximum_labels_number,
-    MinConfidence=minimum_confidence_percentage,
+    }
 )
 ```
-
-> `maximum_labels_number` and `minimum_confidence_percentage` and defined at the top of the file, feel free to edit the values to see some different behaviors
 
 Once you have received a response from Rekognition, the program will write the data to a brand new file, and upload it to S3:
 
@@ -75,3 +71,5 @@ No, you don't need to modify any of the provided files.
 Yes, you do!
 
 Find some `.jpg` images and you should be ready to analyze them where your infrastructure will be ready!
+
+You can also take a look at the [`images`](images) folder to test some images.
