@@ -19,4 +19,4 @@ Using S3, Amazon Rekognition and Amazon Lambdas, you will be able to analyze and
 
 ## Lab 3 - Serverless - Weather
 
-Now you have experimented some serverless technologies, let's take a look at ...? <!-- TODO -->
+Now you have experimented some serverless technologies, you can go through [this hands-on AWS lab](https://aws.amazon.com/getting-started/hands-on/build-train-deploy-machine-learning-model-sagemaker/) to experience some Machine Learning features of AWS.
