@@ -1,5 +1,9 @@
 # Meero x ADA - Labs resources
 
+<p align="center">
+  <img style="width: 40%;" src="https://assets.meero.com/meeroshowcase/images/front/V5/header/logo__full--green.svg"/>
+</p>
+
 You will find here all resources needed for the labs you will go through during this presentation. Make sure you have `git` [installed and configured](https://docs.github.com/en/get-started/quickstart/set-up-git)
 
 For each lab, go to the related folder and take a look at the documentation: there is often some nice resources to guide you!
