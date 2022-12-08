@@ -13,7 +13,7 @@ The code you will use in your Lambda is pretty simple. Let's take a look at it:
 First, we will fetch some informations from the event; because the Lambda will be triggered by a S3 event, you will have a lot of informations about the created objects, so you must keep only useful informations.
 
 ```python
-# Retrieve images informations
+# Retrieve images information
 images = (
 {
     # Retrieve the bucket name from the incoming request
