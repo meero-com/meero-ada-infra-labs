@@ -13,14 +13,14 @@ def lambda_handler(event: dict, _: dict) -> dict:
     Returns:
         dict: the main image tags, and a status code
     """
-    # Retrieve images informations
-    images = (
+    # Retrieve images information
+    images = [
     {
         # Retrieve the bucket name from the incoming request
         "bucket": b["s3"]["bucket"]["name"],
         # Retrieve the file name (with the path) from the incoming request
         "object": b["s3"]["object"]["key"]
-    }   for b in event["Records"])
+    }   for b in event["Records"]]
     
     return {
         "status": 200,

@@ -14,13 +14,13 @@ First, we will fetch some informations from the event; because the Lambda will b
 
 ```python
 # Retrieve images information
-images = (
+images = [
 {
     # Retrieve the bucket name from the incoming request
     "bucket": b["s3"]["bucket"]["name"],
     # Retrieve the file name (with the path) from the incoming request
     "object": b["s3"]["object"]["key"]
-}   for b in event["Records"])
+}   for b in event["Records"]]
 ```
 
 Then, you will process each images from the event by sending their location to Amazon Rekognition. Because S3 is the only resource that will trigger this lambda, we can have some static arguments:
